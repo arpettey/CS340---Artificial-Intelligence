@@ -6,12 +6,13 @@
 # git init
 # git remote add origin https://github.com/arpettey/CS340---Artificial-Intelligence.git
 # git remote -v
-# git add .
+# git add filename.py
 # git commit -m "Your descriptive commit message"
+# git push
 
 ### pathname : /Users/avapettey/Downloads/AI
 
-### sources : https://docs.python.org/3/library/heapq.html , https://www.geeksforgeeks.org/python/python-get-a-list-as-input-from-user/ , https://www.w3schools.com/python/python_dsa_bubblesort.asp , https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/
+### sources : https://docs.python.org/3/library/heapq.html , https://www.geeksforgeeks.org/python/python-get-a-list-as-input-from-user/ , https://www.w3schools.com/python/python_dsa_bubblesort.asp , https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/ , https://code.visualstudio.com/docs/sourcecontrol/overview
 
 import pandas as pd
 import numpy as np
