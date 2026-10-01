@@ -47,6 +47,17 @@ def sort_count(mylist, count):
     else:
         return False
 
+
+#---------------------------print board state function--------------------------------#
+
+def print_state(mylist):
+    print(" | ", end=None)
+    n = len(mylist)
+    for i in range(n):
+        if i % 3 == 0:
+            print("\n" + "")
+        print(mylist[i], end= " | ")
+
 #--------------------------------validate input---------------------------------------#
 
 y = True
@@ -75,13 +86,14 @@ if heuristic == "distance":
 else:
     li = input("Enter the starting board. Elements should be separated by space. Use 0 for the blank: ").split()
     print(li)
+    print_state(li)
     solvable = sort_count(li, 0)
     if not solvable:
         print("Puzzle not solvable.")
     else:
         heapq.heapify(li)
-        
 
+#---------------------------print board start state---------------------------------#
 
 # heap[0] : the smallest item / the root
 
@@ -95,5 +107,5 @@ else:
 ## A* calculates three values for each cell:
 ### g: Cost of reaching the current cell from the source.
 ### h: Estimated cost from the current cell to the destination.
-### f: Total estimated cost, calculated as f = g+ h.
+### f: Total estimated cost, calculated as f = g + h.
 ## The algorithm selects the cell with the lowest f value and continues searching until the destination is reached.
