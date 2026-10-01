@@ -1,14 +1,4 @@
-# python3 -m pip install pandas
-# python3 -m pip install numpy
-# python3 -m pip install openpyxl
 ## to run : python3 HW3.py
-
-# git init
-# git remote add origin https://github.com/arpettey/CS340---Artificial-Intelligence.git
-# git remote -v
-# git add filename.py
-# git commit -m "Your descriptive commit message"
-# git push
 
 ### pathname : /Users/avapettey/Downloads/AI
 
@@ -87,13 +77,15 @@ def trace_path(solution):
 def a_star_search(start_state, heuristic):
     open_list = []
     closed_list = set()
+    count = 0
     heapq.heappush(open_list, PuzzleState(start_state, None, None, 0, calculate_h_value(start_state, heuristic)))
 
     while open_list:
         cur_state = heapq.heappop(open_list)
+        count += 1
 
         if cur_state.board == goal_state:
-            return cur_state
+            return cur_state, count
 
         closed_list.add(tuple(cur_state.board))
 
@@ -117,7 +109,7 @@ def a_star_search(start_state, heuristic):
             new_state = PuzzleState(new_board, cur_state, move, cur_state.g + 1, cur_state.g + 1 + calculate_h_value(new_board, heuristic))
             heapq.heappush(open_list, new_state)
 
-    return None
+    return None, count
 
 #-----------------------defining the inversion count function--------------------------#
 
@@ -169,16 +161,18 @@ while y == True:
 print(f"You chose {heuristic}!")
 
 li = input("Enter the starting board. Elements should be separated by space. Use 0 for the blank: ").split()
-myli = [int(i) for i in li]
+myli = [int(i) for i in li] ## convert elements to integers
 print_state(myli)
 solvable = sort_count(myli, 0)
 
 if not solvable:
     print("Puzzle not solvable.")
 else:
-    solution = a_star_search(myli, heuristic)
+    solution, count = a_star_search(myli, heuristic)
+
     if solution:
         print("Solution found:")
         trace_path(solution)
+        print(f"{count} nodes visited.")
     else:
         print("Error.")
