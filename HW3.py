@@ -12,7 +12,7 @@
 
 ### pathname : /Users/avapettey/Downloads/AI
 
-### sources : https://docs.python.org/3/library/heapq.html , https://www.geeksforgeeks.org/python/python-get-a-list-as-input-from-user/ , https://www.w3schools.com/python/python_dsa_bubblesort.asp , https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/ , https://code.visualstudio.com/docs/sourcecontrol/overview
+### sources : https://docs.python.org/3/library/heapq.html , https://www.geeksforgeeks.org/python/python-get-a-list-as-input-from-user/ , https://www.w3schools.com/python/python_dsa_bubblesort.asp , https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/ , https://code.visualstudio.com/docs/sourcecontrol/overview, https://www.geeksforgeeks.org/artificial-intelligence/8-puzzle-problem-in-ai/
 
 import heapq
 
@@ -114,7 +114,7 @@ def a_star_search(start_state, heuristic):
             if tuple(new_board) in closed_list:
                 continue
 
-            new_state = PuzzleState(new_board, cur_state, move, cur_state.g + 1, cur_state.g + 1 + calculate_h_value(new_board))
+            new_state = PuzzleState(new_board, cur_state, move, cur_state.g + 1, cur_state.g + 1 + calculate_h_value(new_board, heuristic))
             heapq.heappush(open_list, new_state)
 
     return None
@@ -123,7 +123,7 @@ def a_star_search(start_state, heuristic):
 
 def sort_count(mylist, count):
     mylist = mylist.copy()
-    mylist.remove('0')
+    mylist.remove(0)
     n = len(mylist)
     for i in range(n-1):
         swapped = False
@@ -169,13 +169,14 @@ while y == True:
 print(f"You chose {heuristic}!")
 
 li = input("Enter the starting board. Elements should be separated by space. Use 0 for the blank: ").split()
-print_state(li)
-solvable = sort_count(li, 0)
+myli = [int(i) for i in li]
+print_state(myli)
+solvable = sort_count(myli, 0)
 
 if not solvable:
     print("Puzzle not solvable.")
 else:
-    solution = a_star_search(li, heuristic)
+    solution = a_star_search(myli, heuristic)
     if solution:
         print("Solution found:")
         trace_path(solution)
